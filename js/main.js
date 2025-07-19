@@ -23,6 +23,8 @@ class QuoteScribeApp {
         console.log('🚀 App initialization started');
         this.bindEvents();
         console.log('📎 Events bound');
+        this.loadTheme();
+        console.log('🎨 Theme loaded');
         this.checkApiKey();
         console.log('🔑 API key checked');
         this.loadQuotes();
@@ -65,6 +67,11 @@ class QuoteScribeApp {
         document.getElementById('save-api-key')?.addEventListener('click', () => this.saveApiKey());
         document.getElementById('test-api-key')?.addEventListener('click', () => this.testApiKey());
         document.getElementById('delete-api-key')?.addEventListener('click', () => this.deleteApiKey());
+        
+        // Theme switching
+        document.querySelectorAll('input[name="theme"]').forEach(input => {
+            input.addEventListener('change', (e) => this.handleThemeChange(e.target.value));
+        });
 
         // Reflection
         document.getElementById('save-reflection')?.addEventListener('click', () => this.saveReflection());
@@ -144,6 +151,7 @@ class QuoteScribeApp {
                 break;
             case 'settings':
                 this.loadApiKey();
+                this.loadTheme();
                 break;
         }
 
@@ -366,8 +374,13 @@ class QuoteScribeApp {
         if (favorites.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
-                    <h4>No favorites yet</h4>
-                    <p>Click the star icon on quotes to add them to favorites</p>
+                    <div class="empty-state-icon" data-icon="heart"></div>
+                    <h3>No Favorites Yet</h3>
+                    <p>Start building your collection of inspiring quotes by clicking the ⭐ icon on any quote that speaks to you</p>
+                    <button class="btn btn-primary" onclick="app.switchSection('add-quote')">
+                        <span class="btn-icon" data-icon="add"></span>
+                        Find Quotes to Love
+                    </button>
                 </div>
             `;
             return;
@@ -388,8 +401,13 @@ class QuoteScribeApp {
         if (reflections.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
-                    <h4>No reflections yet</h4>
-                    <p>Start reflecting on your quotes to see them here</p>
+                    <div class="empty-state-icon" data-icon="thoughts"></div>
+                    <h3>No Reflections Yet</h3>
+                    <p>Transform quotes into wisdom by writing your thoughts and insights about them</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('reflection-quote-select').focus()">
+                        <span class="btn-icon" data-icon="reflect"></span>
+                        Start Reflecting
+                    </button>
                 </div>
             `;
             return;
@@ -604,8 +622,19 @@ class QuoteScribeApp {
             console.log('📭 No quotes to display, showing empty state');
             container.innerHTML = `
                 <div class="empty-state">
-                    <h4>No quotes yet</h4>
-                    <p>Generate or save your first quote to see it here</p>
+                    <div class="empty-state-icon" data-icon="lightbulb"></div>
+                    <h3>Ready to Begin?</h3>
+                    <p>Create your first quote by generating one with AI or writing your own inspiring words</p>
+                    <div class="empty-state-actions">
+                        <button class="btn btn-primary" onclick="document.getElementById('generate-quote').click()">
+                            <span class="btn-icon" data-icon="generate"></span>
+                            Generate Quote
+                        </button>
+                        <button class="btn btn-secondary" onclick="document.getElementById('quote-input').focus()">
+                            <span class="btn-icon" data-icon="add"></span>
+                            Write Quote
+                        </button>
+                    </div>
                 </div>
             `;
             return;
@@ -637,6 +666,56 @@ class QuoteScribeApp {
             console.log('🔄 Updating action icons...');
             updateActionIcons();
         }, 50);
+    }
+
+    /**
+     * Handle theme change
+     * @param {string} theme - The selected theme (light, dark, auto)
+     */
+    handleThemeChange(theme) {
+        console.log('🎨 Theme changed to:', theme);
+        this.setTheme(theme);
+        Storage.setItem('quote_scribe_theme', theme);
+    }
+
+    /**
+     * Set the application theme
+     * @param {string} theme - The theme to apply (light, dark, auto)
+     */
+    setTheme(theme) {
+        const body = document.body;
+        
+        // Remove existing theme classes
+        body.classList.remove('theme-light', 'theme-dark');
+        
+        switch (theme) {
+            case 'light':
+                body.classList.add('theme-light');
+                break;
+            case 'dark':
+                body.classList.add('theme-dark');
+                break;
+            case 'auto':
+            default:
+                // Let CSS media queries handle auto mode
+                break;
+        }
+    }
+
+    /**
+     * Load saved theme preference
+     */
+    loadTheme() {
+        const savedTheme = Storage.getItem('quote_scribe_theme') || 'auto';
+        
+        // Set the radio button
+        const themeInput = document.querySelector(`input[name="theme"][value="${savedTheme}"]`);
+        if (themeInput) {
+            themeInput.checked = true;
+        }
+        
+        // Apply the theme
+        this.setTheme(savedTheme);
     }
 }
 
