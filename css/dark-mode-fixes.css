@@ -1,0 +1,240 @@
+/* Dark Mode Contrast Fixes */
+
+/* Enhanced text visibility fixes for all input elements */
+.theme-dark .quote-input,
+.theme-dark .reflection-textarea,
+.theme-dark .form-control,
+.theme-dark .api-key-field,
+.theme-dark .quote-select,
+body:not(.theme-light) .quote-input,
+body:not(.theme-light) .reflection-textarea,
+body:not(.theme-light) .form-control,
+body:not(.theme-light) .api-key-field,
+body:not(.theme-light) .quote-select {
+    color: hsl(210 40% 98%) !important;
+    background-color: hsl(222.2 84% 8%) !important;
+    border-color: hsl(217.2 32.6% 17.5%) !important;
+}
+
+/* Focus states for better visibility */
+.theme-dark .quote-input:focus,
+.theme-dark .reflection-textarea:focus,
+.theme-dark .form-control:focus,
+.theme-dark .api-key-field:focus,
+.theme-dark .quote-select:focus,
+body:not(.theme-light) .quote-input:focus,
+body:not(.theme-light) .reflection-textarea:focus,
+body:not(.theme-light) .form-control:focus,
+body:not(.theme-light) .api-key-field:focus,
+body:not(.theme-light) .quote-select:focus {
+    border-color: hsl(217.2 91.2% 59.8%) !important;
+    box-shadow: 0 0 0 3px hsl(217.2 91.2% 59.8% / 0.2) !important;
+    outline: none !important;
+}
+
+/* Fix placeholder text visibility */
+.theme-dark .quote-input::placeholder,
+.theme-dark .reflection-textarea::placeholder,
+.theme-dark .form-control::placeholder,
+.theme-dark .api-key-field::placeholder,
+body:not(.theme-light) .quote-input::placeholder,
+body:not(.theme-light) .reflection-textarea::placeholder,
+body:not(.theme-light) .form-control::placeholder,
+body:not(.theme-light) .api-key-field::placeholder {
+    color: hsl(215 20.2% 65.1%) !important;
+    opacity: 0.8 !important;
+}
+
+/* Ensure proper contrast for quote cards in dark themes */
+.theme-dark .quote-card,
+.theme-dark .reflection-card,
+body:not(.theme-light) .quote-card,
+body:not(.theme-light) .reflection-card {
+    background-color: hsl(222.2 84% 8%) !important;
+    border-color: hsl(217.2 32.6% 17.5%) !important;
+    color: hsl(210 40% 98%) !important;
+}
+
+.theme-dark .quote-text,
+.theme-dark .reflection-text,
+body:not(.theme-light) .quote-text,
+body:not(.theme-light) .reflection-text {
+    color: hsl(210 40% 98%) !important;
+}
+
+.theme-dark .quote-meta,
+.theme-dark .reflection-meta,
+body:not(.theme-light) .quote-meta,
+body:not(.theme-light) .reflection-meta {
+    color: hsl(215 20.2% 65.1%) !important;
+}
+
+.theme-dark .quote-actions button,
+.theme-dark .reflection-actions button,
+body:not(.theme-light) .quote-actions button,
+body:not(.theme-light) .reflection-actions button {
+    color: hsl(215 20.2% 65.1%) !important;
+}
+
+.theme-dark .quote-actions button:hover,
+.theme-dark .reflection-actions button:hover,
+body:not(.theme-light) .quote-actions button:hover,
+body:not(.theme-light) .reflection-actions button:hover {
+    background-color: hsl(217.2 32.6% 17.5%) !important;
+    color: hsl(210 40% 98%) !important;
+}
+
+/* Fix sidebar in dark mode */
+.theme-dark .sidebar,
+body:not(.theme-light) .sidebar {
+    background-color: hsl(222.2 84% 8%) !important;
+    border-right-color: hsl(217.2 32.6% 17.5%) !important;
+}
+
+/* Fix main background */
+.theme-dark,
+body:not(.theme-light) {
+    background-color: hsl(222.2 84% 4.9%) !important;
+    color: hsl(210 40% 98%) !important;
+}
+
+.theme-dark .main-content,
+body:not(.theme-light) .main-content {
+    background-color: hsl(222.2 84% 4.9%) !important;
+}
+
+/* Text alignment and centering fixes */
+.section-header,
+.section-header h2,
+.section-header .section-subtitle {
+    text-align: center;
+}
+
+.quotes-list h3,
+.reflections-list h3 {
+    text-align: center;
+}
+
+/* Ensure centered layout for main content */
+.content-section {
+    text-align: center;
+}
+
+.quote-input-container,
+.reflection-container,
+.setting-group {
+    text-align: left; /* Keep form content left-aligned for readability */
+}
+
+/* Center empty state content */
+.empty-state {
+    text-align: center !important;
+}
+
+/* Enhanced spacing and readability for "Ready to Begin?" state */
+.empty-state h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.empty-state p {
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* Ensure buttons in empty state are properly centered */
+.empty-state-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Light theme enhancements for consistency */
+.theme-light .quote-input,
+.theme-light .reflection-textarea,
+.theme-light .form-control,
+.theme-light .api-key-field,
+.theme-light .quote-select {
+    color: hsl(222.2 84% 4.9%) !important;
+    background-color: hsl(0 0% 100%) !important;
+    border-color: hsl(214.3 31.8% 91.4%) !important;
+}
+
+.theme-light .quote-input::placeholder,
+.theme-light .reflection-textarea::placeholder,
+.theme-light .form-control::placeholder,
+.theme-light .api-key-field::placeholder {
+    color: hsl(215.4 16.3% 46.9%) !important;
+    opacity: 0.8 !important;
+}
+
+/* Ensure quote input container has proper styling in all themes */
+.quote-input-container {
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.theme-dark .quote-input-container,
+body:not(.theme-light) .quote-input-container {
+    background-color: hsl(222.2 84% 8%) !important;
+    border-color: hsl(217.2 32.6% 17.5%) !important;
+}
+
+.theme-light .quote-input-container {
+    background-color: hsl(0 0% 100%) !important;
+    border-color: hsl(214.3 31.8% 91.4%) !important;
+}
+
+/* Auto dark mode detection */
+@media (prefers-color-scheme: dark) {
+    /* Enhanced input visibility for auto dark mode */
+    body:not(.theme-light) .quote-input,
+    body:not(.theme-light) .reflection-textarea,
+    body:not(.theme-light) .form-control,
+    body:not(.theme-light) .api-key-field,
+    body:not(.theme-light) .quote-select {
+        color: hsl(210 40% 98%) !important;
+        background-color: hsl(222.2 84% 8%) !important;
+        border-color: hsl(217.2 32.6% 17.5%) !important;
+    }
+    
+    body:not(.theme-light) .quote-input::placeholder,
+    body:not(.theme-light) .reflection-textarea::placeholder,
+    body:not(.theme-light) .form-control::placeholder,
+    body:not(.theme-light) .api-key-field::placeholder {
+        color: hsl(215 20.2% 65.1%) !important;
+        opacity: 0.8 !important;
+    }
+    
+    body:not(.theme-light) .quote-card,
+    body:not(.theme-light) .reflection-card {
+        background-color: hsl(222.2 84% 8%) !important;
+        border-color: hsl(217.2 32.6% 17.5%) !important;
+        color: hsl(210 40% 98%) !important;
+    }
+    
+    body:not(.theme-light) .quote-text,
+    body:not(.theme-light) .reflection-text {
+        color: hsl(210 40% 98%) !important;
+    }
+    
+    body:not(.theme-light) .quote-meta,
+    body:not(.theme-light) .reflection-meta {
+        color: hsl(215 20.2% 65.1%) !important;
+    }
+    
+    body:not(.theme-light) .quote-actions button,
+    body:not(.theme-light) .reflection-actions button {
+        color: hsl(215 20.2% 65.1%) !important;
+    }
+    
+    body:not(.theme-light) .quote-actions button:hover,
+    body:not(.theme-light) .reflection-actions button:hover {
+        background-color: hsl(217.2 32.6% 17.5%) !important;
+        color: hsl(210 40% 98%) !important;
+    }
+} 
