@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Scribe Reflect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1>Quote Scribe</h1>
+                <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <ul class="nav-menu">
+                <li>
+                    <button class="nav-item active" data-section="add-quote">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Add Quote</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-item" data-section="favorites">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Favorites</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-item" data-section="reflect">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Reflect</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-item" data-section="settings">
+                        <span class="nav-icon"></span>
+                        <span class="nav-text">Settings</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Add Quote Section -->
+            <section class="content-section active" id="add-quote">
+                <div class="section-header">
+                    <h2>Add Quote</h2>
+                    <p class="section-subtitle">Enter a quote or reflection, or generate a new one</p>
+                </div>
+
+                <div class="quote-input-container">
+                    <textarea 
+                        id="quote-input" 
+                        placeholder="Enter your quote or reflection here..."
+                        rows="4"
+                        class="quote-input"
+                    ></textarea>
+                    
+                    <div class="input-actions">
+                        <button class="btn btn-primary" id="generate-quote">
+                            <span class="btn-icon" data-icon="generate"></span>
+                            Generate Quote
+                        </button>
+                        <button class="btn btn-secondary" id="save-quote">
+                            <span class="btn-icon" data-icon="save"></span>
+                            Save Quote
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quotes-list" id="quotes-list">
+                    <h3>Recent Quotes</h3>
+                    <div class="quotes-container" id="quotes-container">
+                        <!-- Quotes will be dynamically added here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Favorites Section -->
+            <section class="content-section" id="favorites">
+                <div class="section-header">
+                    <h2>Favorites</h2>
+                    <p class="section-subtitle">Your favorite quotes and reflections</p>
+                </div>
+                
+                <div class="quotes-container" id="favorites-container">
+                    <!-- Favorited quotes will be displayed here -->
+                </div>
+            </section>
+
+            <!-- Reflect Section -->
+            <section class="content-section" id="reflect">
+                <div class="section-header">
+                    <h2>Reflect</h2>
+                    <p class="section-subtitle">Journal your thoughts and reflections on quotes</p>
+                </div>
+
+                <div class="reflection-container">
+                    <div class="reflection-quote">
+                        <h3>Quote to Reflect On</h3>
+                        <select id="reflection-quote-select" class="quote-select" title="Select a quote to reflect on" aria-label="Select a quote to reflect on">
+                            <option value="">Select a quote...</option>
+                        </select>
+                        <div id="selected-quote-display" class="selected-quote"></div>
+                    </div>
+
+                    <div class="reflection-input">
+                        <textarea 
+                            id="reflection-text" 
+                            placeholder="Write your reflections here..."
+                            rows="6"
+                            class="reflection-textarea"
+                        ></textarea>
+                        <button class="btn btn-primary" id="save-reflection">
+                            <span class="btn-icon" data-icon="save"></span>
+                            Save Quoteflection
+                        </button>
+                    </div>
+
+                    <div class="reflections-list">
+                        <h3>Your Reflections</h3>
+                        <div id="reflections-container" class="reflections-container">
+                            <!-- Reflections will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="content-section" id="settings">
+                <div class="section-header">
+                    <h2>Settings</h2>
+                    <p class="section-subtitle">Manage your API key and preferences</p>
+                </div>
+
+                <div class="settings-container">
+                    <div class="setting-group">
+                        <h3>API Key</h3>
+                        <p class="setting-description">
+                            Your OpenRouter API key is required to generate quotes. 
+                            <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">Get your key here</a>
+                        </p>
+                        
+                        <div class="api-key-input">
+                            <input 
+                                type="password" 
+                                id="api-key-input" 
+                                placeholder="Enter your OpenRouter API key..."
+                                class="api-key-field"
+                            />
+                            <button class="btn btn-primary" id="save-api-key">
+                                <span class="btn-icon" data-icon="save"></span>
+                                Save Key
+                            </button>
+                        </div>
+                        
+                        <div class="api-key-actions">
+                            <button class="btn btn-secondary" id="test-api-key" data-icon="test">
+                                <span class="btn-icon"></span>
+                                Test Key
+                            </button>
+                            <button class="btn btn-danger" id="delete-api-key" data-icon="delete">
+                                <span class="btn-icon"></span>
+                                Delete Key
+                            </button>
+                        </div>
+                        
+                        <div id="api-status" class="api-status"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Generating quote...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/storage.js"></script>
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
