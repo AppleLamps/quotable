@@ -90,7 +90,7 @@ export class ApiClient {
                 { role: 'user', content: userPrompt }
             ],
             max_tokens: 3000,
-            temperature: 0.8,
+            temperature: 1.1,
             top_p: 0.9
         };
 
