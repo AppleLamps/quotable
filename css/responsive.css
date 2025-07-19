@@ -1,1 +1,224 @@
-vv
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        z-index: 100;
+        background-color: hsl(var(--background));
+        border-right: none;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .sidebar-toggle {
+        display: flex;
+    }
+
+    .main-content {
+        margin-left: 0;
+        max-width: 100%;
+        padding: var(--spacing-md);
+    }
+
+    .nav-item {
+        padding: var(--spacing-md);
+        font-size: 1rem;
+    }
+
+    .nav-icon {
+        font-size: 1.5rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.75rem;
+    }
+
+    .input-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        padding: var(--spacing-md);
+    }
+
+    .api-key-input {
+        flex-direction: column;
+    }
+
+    .api-key-actions {
+        flex-direction: column;
+    }
+
+    .quote-actions {
+        justify-content: flex-end;
+    }
+
+    .quote-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        padding: var(--spacing-md);
+    }
+
+    .main-content {
+        padding: var(--spacing-sm);
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .quote-input,
+    .reflection-textarea,
+    .quote-select,
+    .api-key-field {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    .quotes-container {
+        gap: var(--spacing-sm);
+    }
+
+    .quote-card {
+        padding: var(--spacing-md);
+    }
+
+    .quote-text {
+        font-size: 1rem;
+    }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar {
+        width: 240px;
+    }
+
+    .main-content {
+        margin-left: 240px;
+        max-width: calc(100% - 240px);
+    }
+
+    .section-header h2 {
+        font-size: 1.875rem;
+    }
+}
+
+/* Large Screen Styles */
+@media (min-width: 1200px) {
+    .main-content {
+        padding: var(--spacing-2xl);
+    }
+
+    .section-header h2 {
+        font-size: 2.25rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar,
+    .loading-overlay,
+    .quote-actions,
+    .api-key-actions {
+        display: none !important;
+    }
+
+    .main-content {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .content-section {
+        display: block !important;
+        page-break-inside: avoid;
+    }
+
+    .quote-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --border: 222.2 84% 4.9%;
+        --muted-foreground: 222.2 84% 4.9%;
+    }
+
+    .quote-card,
+    .reflection-card {
+        border-width: 2px;
+    }
+
+    .btn {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .loading-spinner {
+        animation: none;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 217.2 91.2% 59.8%;
+        --primary-foreground: 222.2 84% 4.9%;
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 224.3 76.3% 94.1%;
+    }
+}
+
+/* Focus Visible */
+:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+    background-color: hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+}
